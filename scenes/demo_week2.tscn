@@ -1,6 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5og3iddved44"]
+[gd_scene load_steps=5 format=3 uid="uid://b5og3iddved44"]
 
 [ext_resource type="Script" uid="uid://brenymhff25jt" path="res://scripts/demoStart.gd" id="1_tkjuj"]
+[ext_resource type="Texture2D" uid="uid://c6omap48p8mv6" path="res://icon.svg" id="3_r6ogv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8f354"]
+size = Vector2(132, 126.067)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6ogv"]
+size = Vector2(127, 129)
 
 [node name="demo_week2" type="Node2D"]
 script = ExtResource("1_tkjuj")
+
+[node name="Block" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(35, 358)
+scale = Vector2(1, 6.56)
+texture = ExtResource("3_r6ogv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Block"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block/StaticBody2D"]
+position = Vector2(-1, 0.228661)
+shape = SubResource("RectangleShape2D_8f354")
+
+[node name="Zone" type="Sprite2D" parent="."]
+modulate = Color(0.709985, 0.912509, 0.54912, 1)
+position = Vector2(1003, 317)
+texture = ExtResource("3_r6ogv")
+
+[node name="Area2D" type="Area2D" parent="Zone"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone/Area2D"]
+position = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_r6ogv")
+
+[connection signal="body_entered" from="Zone/Area2D" to="." method="_on_zone_entered"]
+[connection signal="body_exited" from="Zone/Area2D" to="." method="_on_zone_exited"]
