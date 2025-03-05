@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvpf22m5i7yyw"]
 
-[ext_resource type="Script" uid="uid://o0lon065s6do" path="res://scripts/character3D.gd" id="1_5x0ql"]
+[ext_resource type="Script" uid="uid://dcyq8ijjxl8k6" path="res://scripts/new_character_movement_3D.gd" id="1_5x0ql"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wd2we"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_5x0ql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

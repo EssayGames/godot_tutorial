@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://2ngk3b8v0w1r"]
+
+[ext_resource type="PackedScene" uid="uid://da5fkcqkx8s8h" path="res://Models/Prototyping/button-floor-round-small.fbx" id="1_mi6dp"]
+[ext_resource type="Script" uid="uid://bv5y6wgbebex" path="res://scripts/button.gd" id="2_rhj8v"]
+
+[node name="door_button" instance=ExtResource("1_mi6dp")]
+script = ExtResource("2_rhj8v")
