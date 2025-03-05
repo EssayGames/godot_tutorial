@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxxhs4n6a7ocg"]
+
+[ext_resource type="Script" uid="uid://3qox0fv105mx" path="res://scripts/3d_scene_demo.gd" id="1_wyr5f"]
+[ext_resource type="PackedScene" uid="uid://c5s5im2kykr2y" path="res://scenes/wall.tscn" id="2_injwk"]
+[ext_resource type="PackedScene" uid="uid://w0c5ydt3vwx5" path="res://scenes/floor.tscn" id="3_bfs01"]
+[ext_resource type="PackedScene" uid="uid://b4t5fkgddvj3e" path="res://scenes/wall_doorway.tscn" id="4_injwk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_injwk"]
+
+[sub_resource type="Sky" id="Sky_bfs01"]
+sky_material = SubResource("ProceduralSkyMaterial_injwk")
+
+[sub_resource type="Environment" id="Environment_fmpkw"]
+background_mode = 2
+sky = SubResource("Sky_bfs01")
+
+[node name="3D_Scene_Demo" type="Node3D"]
+script = ExtResource("1_wyr5f")
+
+[node name="Room_1" type="Node3D" parent="."]
+
+[node name="wall_L" parent="Room_1" instance=ExtResource("2_injwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, -1.6, 0.2, 0)
+
+[node name="floor-thick" parent="Room_1" instance=ExtResource("3_bfs01")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="wall_R" parent="Room_1" instance=ExtResource("2_injwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, 1.6, 0.2, 0)
+
+[node name="wall-doorway-wide-sliding" parent="Room_1" instance=ExtResource("4_injwk")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.200027, -2.315)
+
+[node name="wall_back" parent="Room_1" instance=ExtResource("2_injwk")]
+transform = Transform3D(-4.37114e-08, 0, 3.5, 0, 1, 0, -1, 0, -1.5299e-07, 0, 0.2, 2.4)
+
+[node name="Room_2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.99194)
+
+[node name="wall_L" parent="Room_2" instance=ExtResource("2_injwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, -1.6, 0.2, 0)
+
+[node name="floor-thick" parent="Room_2" instance=ExtResource("3_bfs01")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="wall_R" parent="Room_2" instance=ExtResource("2_injwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, 1.6, 0.2, 0)
+
+[node name="wall" parent="Room_2" instance=ExtResource("2_injwk")]
+transform = Transform3D(-4.37114e-08, 0, 3.5, 0, 1, 0, -1, 0, -1.5299e-07, 0, 0.2, -2.5)
+
+[node name="Start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.38562)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fmpkw")
