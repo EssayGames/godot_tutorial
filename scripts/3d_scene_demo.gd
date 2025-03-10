@@ -8,6 +8,10 @@ func _ready():
 	add_child(mc)
 	mc.global_position = $Start.global_position
 	mc.scale = $Start.scale
+	
+	mc.door_interact.connect(_door_open.bind($door_switch.door_to_interact))
+	
+	SingletonTest._name_singleton("Poop")
 	pass # Replace with function body.
 
 
@@ -19,3 +23,6 @@ func _process(delta):
 func _on_door_anim(anim_name):
 	$"Room_1/wall_doorway/door-sliding-double-wide/AnimationPlayer".play(anim_name)
 	pass # Replace with function body.
+	
+func _door_open(door):
+	door._open()
