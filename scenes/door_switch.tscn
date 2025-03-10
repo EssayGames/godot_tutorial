@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=4 uid="uid://cxs5fy4yjyllx"]
+[gd_scene load_steps=14 format=4 uid="uid://cxs5fy4yjyllx"]
 
+[ext_resource type="Script" uid="uid://imwtrksktfvh" path="res://scripts/door_switch.gd" id="1_08x3x"]
 [ext_resource type="Texture2D" uid="uid://b58g6is4ot18s" path="res://Models/Prototyping/Textures/colormap.png" id="1_jetlt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t14gk"]
@@ -79,38 +80,46 @@ shadow_mesh = SubResource("ArrayMesh_64l5p")
 [sub_resource type="Animation" id="Animation_yyu84"]
 resource_name = "toggle-on"
 length = 0.2
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("button-floor-square-small/button")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.04, 1, 0, -0.00064, 0, 0.0533333, 1, 0, -0.00202272, 0, 0.0666667, 1, 0, -0.00493827, 0, 0.08, 1, 0, -0.01024, 0, 0.0933333, 1, 0, -0.0189709, 0, 0.106667, 1, 0, -0.0310291, 0, 0.12, 1, 0, -0.03976, 0, 0.133333, 1, 0, -0.0450617, 0, 0.146667, 1, 0, -0.0479773, 0, 0.16, 1, 0, -0.04936, 0, 0.2, 1, 0, -0.05, 0)
 
 [sub_resource type="Animation" id="Animation_uc4gs"]
 resource_name = "toggle-off"
 length = 0.2
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("button-floor-square-small/button")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.05, 0, 0.04, 1, 0, -0.04936, 0, 0.0533333, 1, 0, -0.0479773, 0, 0.0666667, 1, 0, -0.0450617, 0, 0.08, 1, 0, -0.03976, 0, 0.0933333, 1, 0, -0.0310291, 0, 0.106667, 1, 0, -0.0189709, 0, 0.12, 1, 0, -0.01024, 0, 0.133333, 1, 0, -0.00493827, 0, 0.146667, 1, 0, -0.00202272, 0, 0.16, 1, 0, -0.000639999, 0, 0.2, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_4677m"]
 resource_name = "toggle"
 length = 0.5
-tracks/0/type = "position_3d"
-tracks/0/imported = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("button-floor-square-small/button")
+tracks/0/path = NodePath("button-floor-square-small2/button:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.05, 1, 0, -0.00064, 0, 0.0666667, 1, 0, -0.00202272, 0, 0.0833333, 1, 0, -0.00493827, 0, 0.1, 1, 0, -0.01024, 0, 0.116667, 1, 0, -0.0189709, 0, 0.133333, 1, 0, -0.0310291, 0, 0.15, 1, 0, -0.03976, 0, 0.166667, 1, 0, -0.0450617, 0, 0.183333, 1, 0, -0.0479773, 0, 0.2, 1, 0, -0.04936, 0, 0.3, 1, 0, -0.04936, 0, 0.316667, 1, 0, -0.0479773, 0, 0.333333, 1, 0, -0.0450617, 0, 0.35, 1, 0, -0.03976, 0, 0.366667, 1, 0, -0.0310291, 0, 0.383333, 1, 0, -0.0189709, 0, 0.4, 1, 0, -0.01024, 0, 0.416667, 1, 0, -0.00493827, 0, 0.433333, 1, 0, -0.00202272, 0, 0.45, 1, 0, -0.000639999, 0, 0.5, 1, 0, 0, 0)
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.0444202, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_08x3x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button-floor-square-small2/button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.0444202, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_my7ju"]
 _data = {
+&"RESET": SubResource("Animation_08x3x"),
 &"toggle": SubResource("Animation_4677m"),
 &"toggle-off": SubResource("Animation_uc4gs"),
 &"toggle-on": SubResource("Animation_yyu84")
@@ -120,12 +129,14 @@ _data = {
 size = Vector3(0.592636, 0.240967, 0.59436)
 
 [node name="door_switch" type="Node3D"]
+script = ExtResource("1_08x3x")
 
 [node name="button-floor-square-small2" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_ro5bc")
 skeleton = NodePath("")
 
 [node name="button" type="MeshInstance3D" parent="button-floor-square-small2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0444202, 0)
 mesh = SubResource("ArrayMesh_kqapp")
 skeleton = NodePath("")
 
