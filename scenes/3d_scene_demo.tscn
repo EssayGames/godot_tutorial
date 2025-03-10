@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxxhs4n6a7ocg"]
+[gd_scene load_steps=9 format=3 uid="uid://cxxhs4n6a7ocg"]
 
 [ext_resource type="Script" uid="uid://3qox0fv105mx" path="res://scripts/3d_scene_demo.gd" id="1_wyr5f"]
 [ext_resource type="PackedScene" uid="uid://c5s5im2kykr2y" path="res://scenes/wall.tscn" id="2_injwk"]
 [ext_resource type="PackedScene" uid="uid://w0c5ydt3vwx5" path="res://scenes/floor.tscn" id="3_bfs01"]
 [ext_resource type="PackedScene" uid="uid://b4t5fkgddvj3e" path="res://scenes/wall_doorway.tscn" id="4_injwk"]
-[ext_resource type="Script" uid="uid://bu75strjp7ocf" path="res://scripts/door_zone.gd" id="5_bfs01"]
+[ext_resource type="PackedScene" uid="uid://cxs5fy4yjyllx" path="res://scenes/door_switch.tscn" id="5_bfs01"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_injwk"]
 
@@ -14,9 +14,6 @@ sky_material = SubResource("ProceduralSkyMaterial_injwk")
 [sub_resource type="Environment" id="Environment_fmpkw"]
 background_mode = 2
 sky = SubResource("Sky_bfs01")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fmpkw"]
-size = Vector3(1.53076, 1, 1.39069)
 
 [node name="3D_Scene_Demo" type="Node3D"]
 script = ExtResource("1_wyr5f")
@@ -59,14 +56,5 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, 1.38562)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fmpkw")
 
-[node name="Door_Zone" type="Area3D" parent="." node_paths=PackedStringArray("door_to_open")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.504762, -2.29976)
-script = ExtResource("5_bfs01")
-door_to_open = NodePath("../Room_1/wall_doorway")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door_Zone"]
-shape = SubResource("BoxShape3D_fmpkw")
-
-[connection signal="body_entered" from="Door_Zone" to="Door_Zone" method="_on_door_zone_enter"]
-[connection signal="body_exited" from="Door_Zone" to="Door_Zone" method="_on_door_zone_exit"]
-[connection signal="play_door_anim" from="Door_Zone" to="." method="_on_door_anim"]
+[node name="door_switch" parent="." instance=ExtResource("5_bfs01")]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 1.1079, 0.650831, -2.2375)

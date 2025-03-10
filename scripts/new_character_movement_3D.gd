@@ -36,3 +36,7 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	if $CollisionShape3D/Camera3D/RayCast3D.is_colliding():
+		var col_obj = $CollisionShape3D/Camera3D/RayCast3D.get_collider()
+		print(col_obj)
